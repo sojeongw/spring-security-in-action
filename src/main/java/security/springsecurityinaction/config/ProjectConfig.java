@@ -26,8 +26,8 @@ public class ProjectConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.formLogin(form -> form.defaultSuccessUrl("/main", true))
-                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated());
+        http.authorizeHttpRequests(auth -> auth
+                .anyRequest().denyAll());
 
         return http.build();
     }
