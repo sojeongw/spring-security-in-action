@@ -2,6 +2,7 @@ package security.springsecurityinaction.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
@@ -26,8 +27,8 @@ public class ProjectConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(auth -> auth
-                .anyRequest().denyAll());
+        http.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST, "/hello").hasRole("ADMIN")
+                .anyRequest().authenticated());
 
         return http.build();
     }
