@@ -21,6 +21,7 @@ public class User {
 
     private String username;
     private String password;
+    private String code;
 
     @Enumerated(EnumType.STRING)
     private EncryptionAlgorithm algorithm;
@@ -66,5 +67,9 @@ public class User {
 
     public void setAuthorities(List<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
